@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NURUL YAQIN ONLINE QURAN ACADEMY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .login-bg {
+            background-image: url('https://images.pexels.com/photos/694740/pexels-photo-694740.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <div class="pt-16">
+        <!--#include virtual="components/nav.html" -->
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex items-center justify-center min-h-screen py-12 login-bg">
+        <div class="w-full max-w-md mx-4">
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                <!-- Login Header -->
+                <div class="bg-green-600 py-6 px-8 text-center">
+                    <h2 class="text-2xl font-bold text-white">Login to Your Account</h2>
+                    <p class="text-green-100 mt-1">Access your Quran learning dashboard</p>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="p-8 space-y-6">
+                    <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email*</label>
+
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-gray-400"></i>
+                            </div>
+                            <input type="email" id="email" name="email" required
+                                class="w-full pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                                placeholder="student@example.com">
+                        </div>
+                    </div>
+
+                    <div>
+                            <label for="password" class="block text-gray-700 mb-2">Password*</label>
+
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input type="password" id="password" name="password" required
+                                class="w-full pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                                placeholder="••••••••">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <button type="button" class="text-gray-400 hover:text-gray-600 focus:outline-none" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember" name="remember" type="checkbox"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                            <label for="remember" class="ml-2 block text-sm text-gray-700">
+                                Remember me
+                            </label>
+                        </div>
+                        <div class="text-sm">
+                            <a href="#" class="font-medium text-green-600 hover:text-green-500">
+                                Forgot password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                            class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-md transition duration-300">
+                            Sign In
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Sign Up Link -->
+                <div class="bg-gray-50 px-8 py-6 text-center">
+                        <p class="text-gray-600">
+                            Don't have an account? 
+                            <a href="enrollment.html" class="font-medium text-green-600 hover:text-green-500">
+                                Sign up here
+
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be added here -->
+    <script>
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const password = document.getElementById('password');
+            const icon = this.querySelector('i');
+            if (password.type === 'password') {
+                password.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                password.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real implementation, this would validate credentials
+            alert('Login successful! Redirecting to your dashboard...');
+            // window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>

@@ -21,17 +21,25 @@
         </section>
 
         <!-- Course Filter -->
-        <div class="mb-12 flex justify-center space-x-4">
-            <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">All Courses</button>
-            <button class="px-4 py-2 border border-green-600 text-green-600 rounded-md hover:bg-green-50 transition">Beginners</button>
-            <button class="px-4 py-2 border border-green-600 text-green-600 rounded-md hover:bg-green-50 transition">Intermediate</button>
-            <button class="px-4 py-2 border border-green-600 text-green-600 rounded-md hover:bg-green-50 transition">Advanced</button>
+        <div class="mb-12 flex flex-wrap justify-center gap-4">
+            <div class="relative">
+                <select id="level-filter" class="appearance-none bg-white border border-gray-300 py-2 px-4 pr-8 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                    <option value="">All Levels</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <button id="clear-filters" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">Clear Filters</button>
         </div>
 
         <!-- Course Grid -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Course 1 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            <div class="course-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition" data-level="beginner">
                 <div class="h-48 bg-green-100 flex items-center justify-center">
                     <i class="fas fa-book-quran text-6xl text-green-600"></i>
                 </div>
@@ -46,7 +54,7 @@
             </div>
 
             <!-- Course 2 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            <div class="course-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition" data-level="intermediate">
                 <div class="h-48 bg-green-100 flex items-center justify-center">
                     <i class="fas fa-microphone-alt text-6xl text-green-600"></i>
                 </div>
@@ -61,7 +69,7 @@
             </div>
 
             <!-- Course 3 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            <div class="course-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition" data-level="advanced">
                 <div class="h-48 bg-green-100 flex items-center justify-center">
                     <i class="fas fa-brain text-6xl text-green-600"></i>
                 </div>
@@ -76,7 +84,7 @@
             </div>
 
             <!-- Course 4 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            <div class="course-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition" data-level="intermediate">
                 <div class="h-48 bg-green-100 flex items-center justify-center">
                     <i class="fas fa-question-circle text-6xl text-green-600"></i>
                 </div>
@@ -91,7 +99,7 @@
             </div>
 
             <!-- Course 5 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            <div class="course-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition" data-level="beginner">
                 <div class="h-48 bg-green-100 flex items-center justify-center">
                     <i class="fas fa-language text-6xl text-green-600"></i>
                 </div>
@@ -106,7 +114,7 @@
             </div>
 
             <!-- Course 6 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+            <div class="course-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition" data-level="beginner">
                 <div class="h-48 bg-green-100 flex items-center justify-center">
                     <i class="fas fa-child text-6xl text-green-600"></i>
                 </div>
@@ -124,5 +132,34 @@
 
     <!-- Footer -->
     <!--#include virtual="components/footer.html" -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const levelFilter = document.getElementById('level-filter');
+            const clearBtn = document.getElementById('clear-filters');
+            const courseCards = document.querySelectorAll('.course-card');
+
+            // Filter courses based on selected level
+            levelFilter.addEventListener('change', function() {
+                const selectedLevel = this.value;
+                
+                courseCards.forEach(card => {
+                    if (selectedLevel === '' || card.getAttribute('data-level') === selectedLevel) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            // Clear all filters
+            clearBtn.addEventListener('click', function() {
+                levelFilter.value = '';
+                courseCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

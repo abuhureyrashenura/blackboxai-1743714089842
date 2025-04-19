@@ -1,5 +1,50 @@
 <footer class="bg-gray-800 text-white pt-12 pb-6">
     <div class="max-w-6xl mx-auto px-4">
+                <!-- Newsletter Signup -->
+        <div class="bg-green-700 rounded-lg p-6 mb-8">
+            <div class="max-w-2xl mx-auto text-center">
+                <h3 class="text-xl font-bold mb-2">Stay Updated</h3>
+                <p class="mb-4">Subscribe to our newsletter for course updates and Islamic resources</p>
+                <div class="flex flex-col sm:flex-row gap-2">
+                    <input type="email" id="newsletter-email" placeholder="Your email address" 
+                           class="flex-grow px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300 text-gray-800"
+                           required>
+                    <button id="newsletter-submit" class="px-6 py-2 bg-green-800 hover:bg-green-900 text-white rounded-md transition">
+                        Subscribe
+                    </button>
+                </div>
+                <p id="newsletter-error" class="text-xs mt-2 text-red-300 hidden"></p>
+                <p class="text-xs mt-2 text-green-200">We'll never share your email. Unsubscribe anytime.</p>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('newsletter-submit').addEventListener('click', function(e) {
+                const emailInput = document.getElementById('newsletter-email');
+                const errorElement = document.getElementById('newsletter-error');
+                
+                // Reset error state
+                errorElement.classList.add('hidden');
+                
+                // Validate email format
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+                    errorElement.textContent = 'Please enter a valid email address';
+                    errorElement.classList.remove('hidden');
+                    return;
+                }
+                
+                // Simulate successful submission
+                errorElement.textContent = 'Thank you for subscribing!';
+                errorElement.classList.remove('hidden');
+                errorElement.classList.add('text-green-300');
+                errorElement.classList.remove('text-red-300');
+                emailInput.value = '';
+                
+                // In a real implementation, you would submit the form here
+            });
+        </script>
+
+
         <div class="grid md:grid-cols-4 gap-8">
             <!-- Academy Info -->
             <div>
